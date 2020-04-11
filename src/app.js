@@ -71,17 +71,9 @@ app.post("/repositories/:id/like", (request, response) => {
     return response.status(400).json({err: 'Repository doesn\'t exist'})
   } 
 
-  const newRepo = {
-    id: repositories[repositoryIndex].id,
-    title: repositories[repositoryIndex].title,
-    url: repositories[repositoryIndex].url,
-    techs: repositories[repositoryIndex].techs,
-    likes: repositories[repositoryIndex].likes+1,
-  };
-  
-  repositories[repositoryIndex] = newRepo;
+  repositories[repositoryIndex].likes += 1;
 
-  return response.json(newRepo);
+  return response.json(repositories[repositoryIndex]);
 });
 
 module.exports = app;
